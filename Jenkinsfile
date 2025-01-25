@@ -18,16 +18,13 @@ pipeline {
             }
         }
         
-        stage('CanaryDeploy') {
-            environment { 
-                CANARY_REPLICAS = 1
-            }
+        stage('Deploy Kubernetes') {
             steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    enableConfigSubstitution: true
-                )
+                script{
+                    
+                    sh 'kubectl apply -f train-schedule-kube-canary.yml',
+                    
+                }
             }
         }
         stage('DeployToProduction') {
