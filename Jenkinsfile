@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t somesh165/train-schedule:latest
+                    sh 'docker build -t somesh165/train-schedule:latest .'
                 }
             }
         }
