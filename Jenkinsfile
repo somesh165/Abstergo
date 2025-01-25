@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script{
                     
-                    sh 'kubectl apply -f train-schedule-kube-canary.yml',
+                    sh 'kubectl apply -f train-schedule-kube.yml',
                     
                 }
             }
