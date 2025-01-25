@@ -13,8 +13,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'az account set --subscription 9d33cf9f-a70c-4c8d-b221-67ad92d8fa01'
-                    sh 'az aks get-credentials --resource-group rg-aks --name devopsarch-1 --overwrite-existing'
                     sh 'docker build -t somesh165/train-schedule:latest .'
                 }
             }
@@ -23,7 +21,9 @@ pipeline {
         stage('Deploy Kubernetes') {
             steps {
                 script{
-                    
+                    sh 'az login'
+                    sh 'az account set --subscription 9d33cf9f-a70c-4c8d-b221-67ad92d8fa01'
+                    sh 'az aks get-credentials --resource-group rg-aks --name devopsarch-1 --overwrite-existing'
                     sh 'kubectl apply -f train-schedule-kube.yml --validate=false'                
                 }
             }
