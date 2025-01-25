@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy Kubernetes') {
             steps {
                 script{
-                    sh 'az login'
+                    sh 'az login --service-principle -u 24493cd5-c8f5-4734-b70d-dfa046b6fa5f -p R3V8Q~pF_gg-qkcvw~MKK8ReHH6HUgYyW6mtgdar --tenant f22553fb-733c-4de3-8b6e-80a3e9b7ff04'
                     sh 'az account set --subscription 9d33cf9f-a70c-4c8d-b221-67ad92d8fa01'
                     sh 'az aks get-credentials --resource-group rg-aks --name devopsarch-1 --overwrite-existing'
                     sh 'kubectl apply -f train-schedule-kube.yml --validate=false'                
